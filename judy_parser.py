@@ -49,4 +49,5 @@ def get_catalog(file_name):
             bitmap += sanitized_item[key]
 
         catalog.append(Item(name, p, bitmap))
+    catalog.sort(key = lambda x:x.probability)
     return schema, catalog
