@@ -13,3 +13,14 @@ class Node:
 
     def get_number_of_nodes(self):
         return TreeNode.node_count
+
+class Item:
+    probability = 0.0
+    name = ''
+    bitmap = ''
+
+    def __init__(self, name, probability, bitmap):
+        self.name = name
+        self.probability = probability
+        self.bitmap = bitmap
+        return
