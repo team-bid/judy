@@ -1,5 +1,5 @@
 import csv
-from judy_objects import Item
+from judy_objects import Node
 
 ITEM_NAME_FIELD_KEY = 'item_name'
 PROBABILITY_FIELD_KEY = 'probability'
@@ -48,6 +48,6 @@ def get_catalog(file_name):
         for key in schema:
             bitmap += sanitized_item[key]
 
-        catalog.append(Item(name, p, bitmap))
-    catalog.sort(key = lambda x:x.probability)
+        catalog.append(Node(name, p, bitmap, True))
+    #catalog.sort(key = lambda x:x.probability)
     return schema, catalog
