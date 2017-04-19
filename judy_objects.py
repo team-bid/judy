@@ -1,34 +1,29 @@
-class Node:
-    node_count = 0
+class Node(object):
+    left = None
+    right = None
+    item = None
+    probability = 0.0
     bitmap = ''
     is_item = False
 
-    def __init__(self, is_item, bitmap, parent=None, left_child=None, right_child=None):
-        self.parent = parent
-        self.bitmap = bitmap
+    def __init__(self, i, p, bitmap='', is_item=False):
+        self.item = i
+        self.probability = float(p)
+        self.bitmap = str(bitmap)
         self.is_item = is_item
-        self.left_child = left_child
-        self.right_child = right_child
-        Node.node_count += 1
 
-    def get_number_of_nodes(self):
-        return Node.node_count
+    def setChildren(self, ln, rn):
+        self.left = ln
+        self.right = rn
 
     def __repr__(self):
         if self.is_item:
-            return '[I: %s]' % self.bitmap
-        return '[Q: %s]' % self.bitmap
+            return '\nI: %s p=%s map=%s' % (self.item, self.probability, self.bitmap)
+        else:
+            return '\nQ: %s p=%s map=%s l=%s r=%s' % (self.item, self.probability, self.bitmap, self.left, self.right)
 
-class Item:
-    probability = 0.0
-    name = ''
-    bitmap = ''
+    def __cmp__(self, a):
+        return cmp(self.probability, a.probability)
 
-    def __init__(self, name, probability, bitmap):
-        self.name = name
-        self.probability = float(probability)
-        self.bitmap = bitmap
-        return
-
-    def __repr__(self):
-        return '<%s, %.2f: %s>' % (self.name, self.probability, self.bitmap)
+    def __lt__(self, a):
+        return self.probability < a.probability
