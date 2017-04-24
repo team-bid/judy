@@ -34,7 +34,7 @@ def find_contrasting_properties(node1, node2, schema):
     rev_schema = {v: k for k, v in schema.items()}
     i = 0
     for bit1, bit2 in zip(node1.bitmap, node2.bitmap):
-        if bit1 != bit2:
+        if bit1 != bit2 and bit1 != DONT_CARE and bit2 != DONT_CARE:
             contrasting_properties.add(rev_schema.get(i))
         i += 1
     return contrasting_properties
